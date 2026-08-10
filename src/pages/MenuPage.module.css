@@ -15,7 +15,7 @@
 
 .heroBg {
   position: absolute; inset: 0;
-  background: url('/hero.png') center/cover no-repeat;
+  background: url('/hero.png') center top/cover no-repeat;
   filter: saturate(1.4) brightness(0.42);
   transform: scale(1.04);
   transition: transform 12s ease;
@@ -199,6 +199,11 @@
   transform: rotate(2.5deg) translateY(24px);
   transition: transform 0.25s;
 }
+/* MOBILE MEME SCROLL — hidden on desktop */
+.memesMobile {
+  display: none;
+}
+
 .memeFloatA, .memeFloatB, .memeCard { cursor: pointer; }
 .memeFloatA:hover { transform: rotate(0deg) scale(1.05); }
 .memeFloatB:hover { transform: rotate(0deg) translateY(24px) scale(1.05); }
@@ -312,11 +317,45 @@
   .menuHeadWrapper { grid-template-columns: 1fr; padding: 2.5rem 1rem 0; }
   .menuHead { padding: 0; }
   .menu { padding-bottom: 4rem; }
+
+  /* Show mobile meme scroll */
+  .memesMobile {
+    display: flex;
+    gap: 0.9rem;
+    overflow-x: auto;
+    padding: 1.8rem 0 0.4rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -1rem; /* bleed to edges */
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .memesMobile::-webkit-scrollbar { display: none; }
+
+  .memesMobileCard {
+    flex-shrink: 0;
+    height: 260px;
+    width: auto;
+    border-radius: 8px;
+    scroll-snap-align: start;
+    object-fit: cover;
+    border: 1px solid #222;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .memesMobileCard:active { transform: scale(0.97); }
+
+  /* Hero overlay stronger on mobile for text legibility */
+  .heroOverlay {
+    background: linear-gradient(to bottom, transparent 5%, rgba(13,13,13,0.65) 50%, rgba(13,13,13,0.98) 100%);
+  }
 }
 
 @media (max-width: 480px) {
   /* Hero */
   .hero { padding-bottom: 2rem; }
+  .heroBg { filter: saturate(1.2) brightness(0.32); }
   .heroTag { font-size: 0.58rem; letter-spacing: 0.14em; }
   .heroSub { font-size: 0.65rem; letter-spacing: 0.08em; margin-bottom: 1.6rem; }
   .heroCta { padding: 13px 28px; font-size: 0.68rem; }
