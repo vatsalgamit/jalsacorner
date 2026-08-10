@@ -102,7 +102,7 @@ export default function MenuPage() {
 
         {items.length === 0 && (
           <div className={styles.empty}>
-            <p>No items yet. <Link to="/admin" className={styles.emptyLink}>Add from admin panel →</Link></p>
+            <p>No items yet. <Link to="/jalsacorner/admin" className={styles.emptyLink}>Add from admin panel →</Link></p>
           </div>
         )}
 
@@ -112,7 +112,7 @@ export default function MenuPage() {
           <p className={styles.footerNote}>
             Freshly prepared daily · <strong>Dine-in & Takeaway</strong> · Prices incl. taxes
           </p>
-          <Link to="/admin" className={styles.adminBtn}>Admin Panel</Link>
+          <Link to="/jalsacorner/admin" className={styles.adminBtn}>Admin Panel</Link>
           <p className={styles.credit}>Designed & Developed by Python Department</p>
         </div>
       </main>

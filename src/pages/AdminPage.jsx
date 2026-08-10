@@ -105,7 +105,7 @@ export default function AdminPage() {
           <span className={styles.topbarTitle}>Admin Panel</span>
         </div>
         <div className={styles.topbarRight}>
-          <Link to="/" className={styles.viewMenuBtn}>View Menu →</Link>
+          <Link to="/jalsacorner" className={styles.viewMenuBtn}>View Menu →</Link>
           <button
             className={styles.logoutBtn}
             onClick={() => { sessionStorage.removeItem('adminAuth'); setAuthed(false); }}
