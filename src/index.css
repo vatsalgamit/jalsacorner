@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&family=Tiro+Devanagari+Hindi&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pink: #FF2D78;
+  --orange: #FF6B00;
+  --yellow: #FFD600;
+  --green: #00C48C;
+  --blue: #1A6FFF;
+  --ink: #0D0D0D;
+  --ink2: #151515;
+  --ink3: #1E1E1E;
+  --border: #222;
+  --white: #FFFFF0;
+  --muted: rgba(255,255,240,0.35);
+  --faint: rgba(255,255,240,0.12);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--ink);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+button { cursor: pointer; font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+a { text-decoration: none; color: inherit; }

@@ -1,0 +1,50 @@
+import { createContext, useContext, useState, useEffect } from 'react';
+
+const DEFAULT_ITEMS = [
+  { id: 1, name: 'Khaman', hindi: 'ખમણ · खमण', desc: 'Soft steamed chickpea cake · mustard tempering · green chilli', price: 40, category: 'snacks', badge: 'Veg' },
+  { id: 2, name: 'Dhokla', hindi: 'ઢોકળા · ढोकला', desc: 'Fermented gram flour · tangy · sesame · fresh coriander', price: 45, category: 'snacks', badge: 'Veg' },
+  { id: 3, name: 'Sev Khamni', hindi: 'સેવ ખમણી · सेव ख़मणी', desc: 'Crumbled khaman · fine sev · pomegranate · lemon', price: 50, category: 'snacks', badge: 'Veg' },
+  { id: 4, name: 'Coke', hindi: 'કોક · कोक', desc: 'Ice cold · the classic · pairs with everything spicy', price: 30, category: 'drinks', badge: 'Cold' },
+  { id: 5, name: 'Sprite', hindi: 'સ્પ્રાઇટ · स्प्राइट', desc: 'Lemon lime fizz · crisp · refreshing on a hot day', price: 30, category: 'drinks', badge: 'Cold' },
+  { id: 6, name: 'Fanta', hindi: 'ફૅન્ટા · फैंटा', desc: 'Vibrant orange · sweet · bubbly', price: 30, category: 'drinks', badge: 'Cold' },
+];
+
+const MenuContext = createContext(null);
+
+export function MenuProvider({ children }) {
+  const [items, setItems] = useState(() => {
+    try {
+      const saved = localStorage.getItem('jalsa_menu');
+      return saved ? JSON.parse(saved) : DEFAULT_ITEMS;
+    } catch {
+      return DEFAULT_ITEMS;
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem('jalsa_menu', JSON.stringify(items));
+  }, [items]);
+
+  const addItem = (item) => {
+    const newItem = { ...item, id: Date.now(), price: Number(item.price) };
+    setItems(prev => [...prev, newItem]);
+  };
+
+  const removeItem = (id) => {
+    setItems(prev => prev.filter(i => i.id !== id));
+  };
+
+  const updateItem = (id, data) => {
+    setItems(prev => prev.map(i => i.id === id ? { ...i, ...data, price: Number(data.price) } : i));
+  };
+
+  const resetToDefault = () => setItems(DEFAULT_ITEMS);
+
+  return (
+    <MenuContext.Provider value={{ items, addItem, removeItem, updateItem, resetToDefault }}>
+      {children}
+    </MenuContext.Provider>
+  );
+}
+
+export const useMenu = () => useContext(MenuContext);

@@ -1,0 +1,35 @@
+.wrap {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 7px 0;
+}
+
+.inner {
+  display: inline-flex;
+  animation: ticker 20s linear infinite;
+}
+
+.word {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  padding: 0 1.5rem;
+}
+
+.sep {
+  color: #FF2D78;
+  font-size: 0.68rem;
+  padding: 0;
+  align-self: center;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inner { animation: none; }
+}
