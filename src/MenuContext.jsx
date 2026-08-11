@@ -1,12 +1,13 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
 const DEFAULT_ITEMS = [
-  { id: 1, name: 'Khaman', hindi: 'ખમણ · खमण', desc: 'Soft steamed chickpea cake · mustard tempering · green chilli', price: 40, category: 'snacks', badge: 'Veg' },
-  { id: 2, name: 'Dhokla', hindi: 'ઢોકળા · ढोकला', desc: 'Fermented gram flour · tangy · sesame · fresh coriander', price: 45, category: 'snacks', badge: 'Veg' },
-  { id: 3, name: 'Sev Khamni', hindi: 'સેવ ખમણી · सेव ख़मणी', desc: 'Crumbled khaman · fine sev · pomegranate · lemon', price: 50, category: 'snacks', badge: 'Veg' },
-  { id: 4, name: 'Coke', hindi: 'કોક · कोक', desc: 'Ice cold · the classic · pairs with everything spicy', price: 30, category: 'drinks', badge: 'Cold' },
-  { id: 5, name: 'Sprite', hindi: 'સ્પ્રાઇટ · स्प्राइट', desc: 'Lemon lime fizz · crisp · refreshing on a hot day', price: 30, category: 'drinks', badge: 'Cold' },
-  { id: 6, name: 'Fanta', hindi: 'ફૅન્ટા · फैंटा', desc: 'Vibrant orange · sweet · bubbly', price: 30, category: 'drinks', badge: 'Cold' },
+  { id: 1, name: 'Khaman', hindi: 'ખમણ · खमण', desc: 'Soft steamed chickpea cake · mustard tempering · green chilli', price: 40, category: 'snacks', badge: 'Veg', image: 'khaman.jpg' },
+  { id: 2, name: 'Dhokla', hindi: 'ઢોકળા · ढोकला', desc: 'Fermented gram flour · tangy · sesame · fresh coriander', price: 45, category: 'snacks', badge: 'Veg', image: 'dhokla.jpeg' },
+  { id: 3, name: 'Sev Khamni', hindi: 'સેવ ખમણી · सेव ख़मणी', desc: 'Crumbled khaman · fine sev · pomegranate · lemon', price: 50, category: 'snacks', badge: 'Veg', image: 'sevkhamni.jpeg' },
+  { id: 4, name: 'Ghughra', hindi: 'ઘૂઘરા · घूघरा', desc: 'Crispy pastry · sweet spiced filling · classic Gujarati festive snack', price: 40, category: 'snacks', badge: 'Veg', image: 'ghughra.jpeg' },
+  { id: 5, name: 'Coke', hindi: 'કોક · कोक', desc: 'Ice cold · the classic · pairs with everything spicy', price: 30, category: 'drinks', badge: 'Cold', image: 'coke.jpeg' },
+  { id: 6, name: 'Sprite', hindi: 'સ્પ્રાઇટ · स्प्राइट', desc: 'Lemon lime fizz · crisp · refreshing on a hot day', price: 30, category: 'drinks', badge: 'Cold', image: 'sprite.jpeg' },
+  { id: 7, name: 'Fanta', hindi: 'ફૅન્ટા · फैंटा', desc: 'Vibrant orange · sweet · bubbly', price: 30, category: 'drinks', badge: 'Cold', image: 'fanta.jpeg' },
 ];
 
 const MenuContext = createContext(null);
