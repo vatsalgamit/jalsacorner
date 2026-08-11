@@ -327,19 +327,19 @@
     display: flex;
     gap: 0.9rem;
     overflow-x: auto;
-    padding: 1.8rem 0 0.4rem;
+    overflow-y: visible;
+    padding: 1.6rem 1rem 0.8rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    margin: 0 -1rem; /* bleed to edges */
-    padding-left: 1rem;
-    padding-right: 1rem;
+    width: 100%;
+    box-sizing: border-box;
   }
   .memesMobile::-webkit-scrollbar { display: none; }
 
   .memesMobileCard {
     flex-shrink: 0;
-    height: 260px;
+    height: 240px;
     width: auto;
     border-radius: 8px;
     scroll-snap-align: start;

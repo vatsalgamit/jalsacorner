@@ -59,19 +59,19 @@ export default function MenuPage() {
             <p className={styles.menuEyebrow}>What are we eating today</p>
             <h2 className={styles.menuTitle}>OUR<br /><span>MENU</span></h2>
             <p className={styles.menuSub}>Fresh · Hot · Straight from the kitchen</p>
-
-            {/* Mobile-only meme scroll */}
-            <div className={styles.memesMobile}>
-              {['/memes/1.jpg', '/memes/3.jpg', '/memes/2.jpg', '/memes/4.jpg'].map((src, i) => (
-                <img key={i} src={src} className={styles.memesMobileCard} draggable={false} onClick={() => setActiveMeme(src)} />
-              ))}
-            </div>
           </div>
 
           <div className={styles.memesRight}>
             <img src="/memes/2.jpg" className={styles.memeFloatB} draggable={false} onClick={() => setActiveMeme('/memes/2.jpg')} />
             <img src="/memes/4.jpg" className={`${styles.memeFloatA} ${styles.memeSmall}`} draggable={false} onClick={() => setActiveMeme('/memes/4.jpg')} />
           </div>
+        </div>
+
+        {/* Mobile-only meme scroll — outside the grid so it can't cause overflow */}
+        <div className={styles.memesMobile}>
+          {['/memes/1.jpg', '/memes/3.jpg', '/memes/2.jpg', '/memes/4.jpg'].map((src, i) => (
+            <img key={i} src={src} className={styles.memesMobileCard} draggable={false} onClick={() => setActiveMeme(src)} />
+          ))}
         </div>
 
         {/* SNACKS */}
