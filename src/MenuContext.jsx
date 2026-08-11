@@ -22,7 +22,14 @@ export function MenuProvider({ children }) {
   });
 
   useEffect(() => {
-    localStorage.setItem('jalsa_menu', JSON.stringify(items));
+    try {
+      localStorage.setItem('jalsa_menu', JSON.stringify(items));
+    } catch {
+      // Storage quota exceeded — strip images and retry
+      const stripped = items.map(i => ({ ...i, image: '' }));
+      try { localStorage.setItem('jalsa_menu', JSON.stringify(stripped)); } catch {}
+      console.warn('Storage full: images could not be saved.');
+    }
   }, [items]);
 
   const addItem = (item) => {

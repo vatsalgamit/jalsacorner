@@ -7,20 +7,24 @@ import styles from './AdminPage.module.css';
 const EMPTY_FORM = { name: '', hindi: '', desc: '', price: '', category: 'snacks', badge: 'Veg', image: '' };
 
 function compressImage(file) {
-  return new Promise((resolve) => {
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = () => {
-      const MAX = 600;
-      const scale = Math.min(MAX / img.width, MAX / img.height, 1);
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width * scale;
-      canvas.height = img.height * scale;
-      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-      URL.revokeObjectURL(url);
-      resolve(canvas.toDataURL('image/jpeg', 0.72));
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = reject;
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onerror = reject;
+      img.onload = () => {
+        const MAX = 480;
+        const scale = Math.min(MAX / img.width, MAX / img.height, 1);
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/jpeg', 0.65));
+      };
+      img.src = e.target.result;
     };
-    img.src = url;
+    reader.readAsDataURL(file);
   });
 }
 
@@ -68,8 +72,12 @@ export default function AdminPage() {
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    const compressed = await compressImage(file);
-    setForm(f => ({ ...f, image: compressed }));
+    try {
+      const compressed = await compressImage(file);
+      setForm(f => ({ ...f, image: compressed }));
+    } catch {
+      showToast('Image failed to load. Try a smaller photo.');
+    }
   };
 
   const startEdit = (item) => {
