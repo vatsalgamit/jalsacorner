@@ -6,28 +6,6 @@ import styles from './AdminPage.module.css';
 
 const EMPTY_FORM = { name: '', hindi: '', desc: '', price: '', category: 'snacks', badge: 'Veg', image: '' };
 
-function compressImage(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = reject;
-    reader.onload = (e) => {
-      const img = new Image();
-      img.onerror = reject;
-      img.onload = () => {
-        const MAX = 480;
-        const scale = Math.min(MAX / img.width, MAX / img.height, 1);
-        const canvas = document.createElement('canvas');
-        canvas.width = Math.round(img.width * scale);
-        canvas.height = Math.round(img.height * scale);
-        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-        resolve(canvas.toDataURL('image/jpeg', 0.65));
-      };
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
 export default function AdminPage() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem('adminAuth') === '1');
   const { items, addItem, removeItem, updateItem, resetToDefault } = useMenu();
@@ -69,17 +47,6 @@ export default function AdminPage() {
     setForm(EMPTY_FORM);
   };
 
-  const handleImageChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    try {
-      const compressed = await compressImage(file);
-      setForm(f => ({ ...f, image: compressed }));
-    } catch {
-      showToast('Image failed to load. Try a smaller photo.');
-    }
-  };
-
   const startEdit = (item) => {
     setEditId(item.id);
     setForm({ name: item.name, hindi: item.hindi, desc: item.desc, price: item.price, category: item.category, badge: item.badge, image: item.image || '' });
@@ -102,7 +69,7 @@ export default function AdminPage() {
   const ItemRow = ({ item }) => (
     <div className={styles.itemRow}>
       <div className={`${styles.itemAccent} ${item.category === 'drinks' ? styles.drinkAccent : ''}`} />
-      {item.image && <img src={item.image} className={styles.itemThumb} alt={item.name} />}
+      {item.image && <img src={item.image.startsWith('data:') ? item.image : `/menu/${item.image}`} className={styles.itemThumb} alt={item.name} />}
       <div className={styles.itemInfo}>
         <span className={styles.itemName}>{item.name}</span>
         <span className={styles.itemHindi}>{item.hindi}</span>
@@ -233,23 +200,23 @@ export default function AdminPage() {
               </div>
 
               <div className={styles.fieldGroup}>
-                <label className={styles.label}>Photo (optional)</label>
-                <label className={styles.imageUpload}>
-                  {form.image
-                    ? <img src={form.image} className={styles.imagePreview} alt="preview" />
-                    : <span className={styles.imageUploadPlaceholder}>+ Choose photo</span>
-                  }
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className={styles.imageInput}
-                    onChange={handleImageChange}
-                  />
-                </label>
+                <label className={styles.label}>Photo filename (optional)</label>
+                <input
+                  className={styles.input}
+                  name="image"
+                  value={form.image}
+                  onChange={handleChange}
+                  placeholder="e.g. khaman.jpg"
+                />
+                <span className={styles.imageHint}>Add file to public/menu/ folder, then enter filename here</span>
                 {form.image && (
-                  <button type="button" className={styles.removeImageBtn} onClick={() => setForm(f => ({ ...f, image: '' }))}>
-                    Remove photo
-                  </button>
+                  <img
+                    src={`/menu/${form.image}`}
+                    className={styles.imagePreview}
+                    alt="preview"
+                    onError={e => { e.target.style.display = 'none'; }}
+                    onLoad={e => { e.target.style.display = 'block'; }}
+                  />
                 )}
               </div>
 

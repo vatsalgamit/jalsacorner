@@ -6,7 +6,11 @@ export default function MenuItem({ item }) {
     <div className={`${styles.item} ${isDrink ? styles.drink : ''}`}>
       <div className={styles.accent} />
       {item.image && (
-        <img src={item.image} alt={item.name} className={styles.photo} />
+        <img
+          src={item.image.startsWith('data:') ? item.image : `/menu/${item.image}`}
+          alt={item.name}
+          className={styles.photo}
+        />
       )}
       <div className={styles.inner}>
         <div className={styles.left}>
