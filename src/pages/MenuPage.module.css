@@ -37,6 +37,8 @@
   text-align: center;
   padding: 0 1.5rem;
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .heroTag {
@@ -356,14 +358,23 @@
   /* Hero */
   .hero { padding-bottom: 2rem; }
   .heroBg { filter: saturate(1.2) brightness(0.32); }
-  .heroTag { font-size: 0.58rem; letter-spacing: 0.14em; }
-  .heroSub { font-size: 0.65rem; letter-spacing: 0.08em; margin-bottom: 1.6rem; }
-  .heroCta { padding: 13px 28px; font-size: 0.68rem; }
+  .heroInner { padding: 0 1.2rem; }
+  .heroTag { font-size: 0.55rem; letter-spacing: 0.1em; padding: 4px 10px; }
+  .heroName {
+    font-size: clamp(2.2rem, 10vw, 3rem);
+    text-shadow: 2px 2px 0 var(--pink), 4px 4px 0 rgba(255,45,120,0.15);
+  }
+  .heroNameEn { font-size: clamp(1.1rem, 5vw, 1.6rem); letter-spacing: 0.1em; }
+  .heroSub { font-size: 0.6rem; letter-spacing: 0.06em; margin-bottom: 1.4rem; }
+  .heroCta { padding: 11px 24px; font-size: 0.65rem; }
 
   /* Menu head */
-  .menuTitle { font-size: clamp(3rem, 16vw, 4.5rem); }
-  .menuEyebrow { font-size: 0.58rem; letter-spacing: 0.18em; }
-  .menuSub { font-size: 0.72rem; }
+  .menuTitle { font-size: clamp(2.8rem, 14vw, 4rem); }
+  .menuEyebrow { font-size: 0.56rem; letter-spacing: 0.16em; }
+  .menuSub { font-size: 0.7rem; }
+
+  /* Meme scroll height on small screens */
+  .memesMobileCard { height: 210px; }
 
   /* Sections */
   .catWrap { margin-top: 2rem; padding: 0 1rem; }
@@ -378,8 +389,11 @@
 }
 
 @media (max-width: 360px) {
+  .heroName { font-size: clamp(1.9rem, 9vw, 2.4rem); }
+  .heroNameEn { font-size: clamp(1rem, 5vw, 1.4rem); }
   .heroSub { display: none; }
-  .menuTitle { font-size: clamp(2.8rem, 18vw, 3.5rem); }
+  .menuTitle { font-size: clamp(2.4rem, 15vw, 3rem); }
+  .memesMobileCard { height: 180px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
