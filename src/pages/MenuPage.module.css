@@ -322,31 +322,33 @@
   .menuHead { padding: 0; }
   .menu { padding-bottom: 4rem; }
 
-  /* Show mobile meme scroll */
+  /* Mobile auto-scroll meme strip */
   .memesMobile {
-    display: flex;
-    gap: 0.9rem;
-    overflow-x: auto;
-    overflow-y: visible;
-    padding: 1.6rem 1rem 0.8rem;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    overflow: hidden;
+    padding: 1.6rem 0 0.8rem;
     width: 100%;
-    box-sizing: border-box;
   }
-  .memesMobile::-webkit-scrollbar { display: none; }
+
+  .memesMobileTrack {
+    display: inline-flex;
+    gap: 0.9rem;
+    animation: memeDrift 16s linear infinite;
+  }
+  .memesMobile:active .memesMobileTrack { animation-play-state: paused; }
+
+  @keyframes memeDrift {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
   .memesMobileCard {
     flex-shrink: 0;
     height: 240px;
     width: auto;
     border-radius: 8px;
-    scroll-snap-align: start;
     object-fit: cover;
     border: 1px solid #222;
     cursor: pointer;
-    transition: transform 0.2s;
   }
   .memesMobileCard:active { transform: scale(0.97); }
 
@@ -376,8 +378,8 @@
   .menuEyebrow { font-size: 0.54rem; letter-spacing: 0.14em; }
   .menuSub { font-size: 0.68rem; }
 
-  /* Meme scroll */
-  .memesMobileCard { height: 200px; }
+  /* Meme strip */
+  .memesMobileCard { height: 190px; }
 
   /* Sections */
   .catWrap { margin-top: 2rem; padding: 0 1rem; }
@@ -394,7 +396,7 @@
   .heroNameEn { font-size: 5.5vw; }
   .heroSub { display: none; }
   .menuTitle { font-size: 13vw; }
-  .memesMobileCard { height: 170px; }
+  .memesMobileCard { height: 160px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

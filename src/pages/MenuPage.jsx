@@ -67,11 +67,23 @@ export default function MenuPage() {
           </div>
         </div>
 
-        {/* Mobile-only meme scroll — outside the grid so it can't cause overflow */}
+        {/* Mobile-only auto-scroll meme strip */}
         <div className={styles.memesMobile}>
-          {['/memes/1.jpg', '/memes/3.jpg', '/memes/2.jpg', '/memes/4.jpg'].map((src, i) => (
-            <img key={i} src={src} className={styles.memesMobileCard} draggable={false} onClick={() => setActiveMeme(src)} />
-          ))}
+          <div className={styles.memesMobileTrack}>
+            {/* duplicated for seamless infinite loop */}
+            {[...Array(2)].map((_, pass) =>
+              ['/memes/1.jpg', '/memes/3.jpg', '/memes/2.jpg', '/memes/4.jpg'].map((src, i) => (
+                <img
+                  key={`${pass}-${i}`}
+                  src={src}
+                  className={styles.memesMobileCard}
+                  draggable={false}
+                  onClick={() => setActiveMeme(src)}
+                  aria-hidden={pass === 1}
+                />
+              ))
+            )}
+          </div>
         </div>
 
         {/* SNACKS */}
