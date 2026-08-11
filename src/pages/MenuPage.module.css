@@ -1,4 +1,4 @@
-.page { background: var(--ink); min-height: 100vh; }
+.page { background: var(--ink); min-height: 100vh; overflow-x: hidden; max-width: 100vw; }
 
 /* HERO */
 .hero {
@@ -62,6 +62,7 @@
   margin-bottom: 0.2rem;
   text-shadow: 4px 4px 0 var(--pink), 8px 8px 0 rgba(255,45,120,0.2);
   display: block;
+  max-width: 100%;
 }
 
 .heroNameEn {
@@ -71,6 +72,7 @@
   color: var(--yellow);
   margin-bottom: 0.8rem;
   display: block;
+  max-width: 100%;
 }
 
 .heroSub {
@@ -355,45 +357,44 @@
 }
 
 @media (max-width: 480px) {
-  /* Hero */
+  /* Hero — purely vw so nothing overflows */
   .hero { padding-bottom: 2rem; }
   .heroBg { filter: saturate(1.2) brightness(0.32); }
-  .heroInner { padding: 0 1.2rem; }
-  .heroTag { font-size: 0.55rem; letter-spacing: 0.1em; padding: 4px 10px; }
+  .heroInner { padding: 0 1rem; }
+  .heroTag { font-size: 0.52rem; letter-spacing: 0.08em; padding: 4px 8px; white-space: nowrap; }
   .heroName {
-    font-size: clamp(2.2rem, 10vw, 3rem);
-    text-shadow: 2px 2px 0 var(--pink), 4px 4px 0 rgba(255,45,120,0.15);
+    font-size: 9vw;
+    text-shadow: 2px 2px 0 var(--pink), 3px 3px 0 rgba(255,45,120,0.15);
+    line-height: 1;
   }
-  .heroNameEn { font-size: clamp(1.1rem, 5vw, 1.6rem); letter-spacing: 0.1em; }
-  .heroSub { font-size: 0.6rem; letter-spacing: 0.06em; margin-bottom: 1.4rem; }
-  .heroCta { padding: 11px 24px; font-size: 0.65rem; }
+  .heroNameEn { font-size: 6vw; letter-spacing: 0.08em; }
+  .heroSub { font-size: 2.8vw; letter-spacing: 0.04em; margin-bottom: 1.4rem; }
+  .heroCta { padding: 11px 22px; font-size: 0.62rem; letter-spacing: 0.14em; }
 
   /* Menu head */
-  .menuTitle { font-size: clamp(2.8rem, 14vw, 4rem); }
-  .menuEyebrow { font-size: 0.56rem; letter-spacing: 0.16em; }
-  .menuSub { font-size: 0.7rem; }
+  .menuTitle { font-size: 14vw; }
+  .menuEyebrow { font-size: 0.54rem; letter-spacing: 0.14em; }
+  .menuSub { font-size: 0.68rem; }
 
-  /* Meme scroll height on small screens */
-  .memesMobileCard { height: 210px; }
+  /* Meme scroll */
+  .memesMobileCard { height: 200px; }
 
   /* Sections */
   .catWrap { margin-top: 2rem; padding: 0 1rem; }
   .itemsWrap { padding: 0 1rem; }
   .footer { padding: 3rem 1rem env(safe-area-inset-bottom, 1.5rem); }
-  .footerNote { font-size: 0.7rem; letter-spacing: 0.06em; line-height: 2; }
+  .footerNote { font-size: 0.68rem; letter-spacing: 0.05em; line-height: 2; }
   .adminBtn { margin-top: 1.5rem; padding: 10px 20px; }
   .credit { margin-top: 1.2rem; padding-bottom: 0.5rem; }
-
-  /* Marquee */
   .marquee { margin-top: 2rem; }
 }
 
 @media (max-width: 360px) {
-  .heroName { font-size: clamp(1.9rem, 9vw, 2.4rem); }
-  .heroNameEn { font-size: clamp(1rem, 5vw, 1.4rem); }
+  .heroName { font-size: 8vw; }
+  .heroNameEn { font-size: 5.5vw; }
   .heroSub { display: none; }
-  .menuTitle { font-size: clamp(2.4rem, 15vw, 3rem); }
-  .memesMobileCard { height: 180px; }
+  .menuTitle { font-size: 13vw; }
+  .memesMobileCard { height: 170px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
