@@ -5,6 +5,9 @@ export default function MenuItem({ item }) {
   return (
     <div className={`${styles.item} ${isDrink ? styles.drink : ''}`}>
       <div className={styles.accent} />
+      {item.image && (
+        <img src={item.image} alt={item.name} className={styles.photo} />
+      )}
       <div className={styles.inner}>
         <div className={styles.left}>
           <span className={styles.name}>{item.name}</span>

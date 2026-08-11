@@ -4,7 +4,25 @@ import { useMenu } from '../MenuContext';
 import AdminLogin from '../components/AdminLogin';
 import styles from './AdminPage.module.css';
 
-const EMPTY_FORM = { name: '', hindi: '', desc: '', price: '', category: 'snacks', badge: 'Veg' };
+const EMPTY_FORM = { name: '', hindi: '', desc: '', price: '', category: 'snacks', badge: 'Veg', image: '' };
+
+function compressImage(file) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const MAX = 600;
+      const scale = Math.min(MAX / img.width, MAX / img.height, 1);
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      resolve(canvas.toDataURL('image/jpeg', 0.72));
+    };
+    img.src = url;
+  });
+}
 
 export default function AdminPage() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem('adminAuth') === '1');
@@ -47,9 +65,16 @@ export default function AdminPage() {
     setForm(EMPTY_FORM);
   };
 
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const compressed = await compressImage(file);
+    setForm(f => ({ ...f, image: compressed }));
+  };
+
   const startEdit = (item) => {
     setEditId(item.id);
-    setForm({ name: item.name, hindi: item.hindi, desc: item.desc, price: item.price, category: item.category, badge: item.badge });
+    setForm({ name: item.name, hindi: item.hindi, desc: item.desc, price: item.price, category: item.category, badge: item.badge, image: item.image || '' });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -69,6 +94,7 @@ export default function AdminPage() {
   const ItemRow = ({ item }) => (
     <div className={styles.itemRow}>
       <div className={`${styles.itemAccent} ${item.category === 'drinks' ? styles.drinkAccent : ''}`} />
+      {item.image && <img src={item.image} className={styles.itemThumb} alt={item.name} />}
       <div className={styles.itemInfo}>
         <span className={styles.itemName}>{item.name}</span>
         <span className={styles.itemHindi}>{item.hindi}</span>
@@ -196,6 +222,27 @@ export default function AdminPage() {
                   onChange={handleChange}
                   placeholder="Veg / Cold / Spicy / New"
                 />
+              </div>
+
+              <div className={styles.fieldGroup}>
+                <label className={styles.label}>Photo (optional)</label>
+                <label className={styles.imageUpload}>
+                  {form.image
+                    ? <img src={form.image} className={styles.imagePreview} alt="preview" />
+                    : <span className={styles.imageUploadPlaceholder}>+ Choose photo</span>
+                  }
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className={styles.imageInput}
+                    onChange={handleImageChange}
+                  />
+                </label>
+                {form.image && (
+                  <button type="button" className={styles.removeImageBtn} onClick={() => setForm(f => ({ ...f, image: '' }))}>
+                    Remove photo
+                  </button>
+                )}
               </div>
 
               <button type="submit" className={styles.submitBtn}>

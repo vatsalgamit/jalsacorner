@@ -109,6 +109,76 @@
 .textarea { resize: vertical; }
 .select option { background: #1A1A1A; }
 
+/* IMAGE UPLOAD */
+.imageUpload {
+  display: block;
+  width: 100%;
+  height: 120px;
+  border: 1px dashed #333;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  background: #1A1A1A;
+  transition: border-color 0.2s;
+}
+.imageUpload:hover { border-color: var(--yellow); }
+
+.imageInput {
+  position: absolute; inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%; height: 100%;
+}
+
+.imageUploadPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.imagePreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.removeImageBtn {
+  display: block;
+  width: 100%;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #444;
+  background: transparent;
+  border: 1px solid #222;
+  padding: 5px;
+  border-radius: 2px;
+  margin-top: 4px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.removeImageBtn:hover { border-color: var(--pink); color: var(--pink); }
+
+.itemThumb {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  flex-shrink: 0;
+  align-self: center;
+  margin-left: 8px;
+  border-radius: 3px;
+  border: 1px solid #2A2A2A;
+}
+
 .submitBtn {
   width: 100%;
   font-family: 'Bebas Neue', sans-serif;

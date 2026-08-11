@@ -3,6 +3,7 @@ import { MenuProvider } from './MenuContext';
 import HomePage from './pages/HomePage';
 import MenuPage from './pages/MenuPage';
 import AdminPage from './pages/AdminPage';
+import QRPage from './pages/QRPage';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/jalsacorner" element={<MenuPage />} />
           <Route path="/jalsacorner/admin" element={<AdminPage />} />
+          <Route path="/jalsacorner/qr" element={<QRPage />} />
         </Routes>
       </BrowserRouter>
     </MenuProvider>
