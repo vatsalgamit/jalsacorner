@@ -60,6 +60,27 @@
   margin-bottom: 1rem;
 }
 
+.independenceBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+.independenceStripe {
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(to right, #FF9933 0%, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%, #138808 100%);
+}
+.independenceText {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  white-space: nowrap;
+}
+
 .heroName {
   font-family: 'Tiro Devanagari Hindi', serif;
   font-size: clamp(3.8rem, 13vw, 9rem);
@@ -334,10 +355,6 @@
 }
 .memeCard:hover { transform: scale(1.02); }
 
-/* EMPTY */
-.empty { text-align: center; padding: 3rem 1.5rem; color: var(--muted); font-size: 0.9rem; }
-.emptyLink { color: var(--yellow); font-weight: 700; }
-
 /* FOOTER */
 .footer {
   text-align: center;
@@ -355,18 +372,6 @@
   color: #333; line-height: 2.4; text-transform: uppercase;
 }
 .footerNote strong { color: var(--pink); }
-
-.adminBtn {
-  display: inline-block;
-  margin-top: 2rem;
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-  border: 1px solid #222;
-  padding: 8px 18px; border-radius: 2px;
-  transition: border-color 0.2s, color 0.2s;
-}
-.adminBtn:hover { border-color: #444; color: var(--white); }
 
 .credit {
   margin-top: 1.8rem;
@@ -426,6 +431,8 @@
   .heroBg { filter: saturate(1.2) brightness(0.32); }
   .heroInner { padding: 0 1rem; }
   .heroTag { font-size: 0.52rem; letter-spacing: 0.08em; padding: 4px 8px; white-space: nowrap; }
+  .independenceText { font-size: 0.52rem; letter-spacing: 0.06em; }
+  .independenceStripe { width: 16px; }
   .heroName {
     font-size: 13vw;
     text-shadow: 2px 2px 0 var(--pink), 3px 3px 0 rgba(255,45,120,0.15);
@@ -447,7 +454,6 @@
   .categoriesRow { margin-top: 2rem; padding: 0 1rem; gap: 2rem; }
   .footer { padding: 3rem 1rem env(safe-area-inset-bottom, 1.5rem); }
   .footerNote { font-size: 0.68rem; letter-spacing: 0.05em; line-height: 2; }
-  .adminBtn { margin-top: 1.5rem; padding: 10px 20px; }
   .credit { margin-top: 1.2rem; padding-bottom: 0.5rem; }
   .marquee { margin-top: 2rem; }
 }

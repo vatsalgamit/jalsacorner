@@ -1,6 +1,6 @@
 import styles from './Ticker.module.css';
 
-const WORDS = ['स्वाद का सिकंदर', '✦', 'No bad vibes only good food', '✦', 'Jalsa Corner', '✦', "DRC's OG spot", '✦', 'Freshly made daily', '✦'];
+const WORDS = ['स्वाद का सिकंदर', '✦', 'No bad vibes only good food', '✦', 'Jalsa Corner', '✦', "DRC's OG spot", '✦', 'Freshly made daily', '✦', '🇮🇳 Happy 80th Independence Day', '✦', 'Jai Hind', '✦'];
 
 export default function Ticker({ color = 'yellow' }) {
   const repeated = [...WORDS, ...WORDS];

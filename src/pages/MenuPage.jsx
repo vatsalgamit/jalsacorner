@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useMenu } from '../MenuContext';
+import { MENU_ITEMS } from '../menuItems';
 import Ticker from '../components/Ticker';
 import MenuItem from '../components/MenuItem';
 import styles from './MenuPage.module.css';
@@ -8,10 +7,10 @@ import styles from './MenuPage.module.css';
 const CLASSIC_MEMES = ['/memes/1.jpg', '/memes/3.jpg', '/memes/2.jpg', '/memes/4.jpg'];
 const NEW_MEMES = ['/memes/5.png', '/memes/6.png', '/memes/7.png', '/memes/8.png', '/memes/9.png', '/memes/10.png', '/memes/11.png', '/memes/12.png', '/memes/13.png'];
 
+const SNACKS = MENU_ITEMS.filter(i => i.category === 'snacks');
+const DRINKS = MENU_ITEMS.filter(i => i.category === 'drinks');
+
 export default function MenuPage() {
-  const { items } = useMenu();
-  const snacks = items.filter(i => i.category === 'snacks');
-  const drinks = items.filter(i => i.category === 'drinks');
   const [activeMeme, setActiveMeme] = useState(null);
 
   useEffect(() => {
@@ -42,6 +41,11 @@ export default function MenuPage() {
 
         <div className={styles.heroInner}>
           <span className={styles.heroTag}>DRC's finest corner</span>
+          <div className={styles.independenceBadge}>
+            <span className={styles.independenceStripe} />
+            <span className={styles.independenceText}>🇮🇳 Celebrating 80th Independence Day</span>
+            <span className={styles.independenceStripe} />
+          </div>
           <h1 className={styles.heroName}>जलसा कॉर्नर</h1>
           <span className={styles.heroNameEn}>Jalsa Corner</span>
           <p className={styles.heroSub}>स्वाद का सिकंदर · The ruler of flavour</p>
@@ -92,27 +96,23 @@ export default function MenuPage() {
 
         {/* SNACKS & DRINKS — side by side on desktop, stacked on mobile */}
         <div className={styles.categoriesRow}>
-          {snacks.length > 0 && (
-            <div className={styles.catColumn}>
-              <div className={styles.catWrap}>
-                <span className={styles.catLabel}>Snacks</span>
-              </div>
-              <div className={styles.itemsWrap}>
-                {snacks.map(item => <MenuItem key={item.id} item={item} />)}
-              </div>
+          <div className={styles.catColumn}>
+            <div className={styles.catWrap}>
+              <span className={styles.catLabel}>Snacks</span>
             </div>
-          )}
+            <div className={styles.itemsWrap}>
+              {SNACKS.map(item => <MenuItem key={item.id} item={item} />)}
+            </div>
+          </div>
 
-          {drinks.length > 0 && (
-            <div className={styles.catColumn}>
-              <div className={styles.catWrap}>
-                <span className={`${styles.catLabel} ${styles.catDrinks}`}>Cold Drinks</span>
-              </div>
-              <div className={styles.itemsWrap}>
-                {drinks.map(item => <MenuItem key={item.id} item={item} />)}
-              </div>
+          <div className={styles.catColumn}>
+            <div className={styles.catWrap}>
+              <span className={`${styles.catLabel} ${styles.catDrinks}`}>Cold Drinks</span>
             </div>
-          )}
+            <div className={styles.itemsWrap}>
+              {DRINKS.map(item => <MenuItem key={item.id} item={item} />)}
+            </div>
+          </div>
         </div>
 
         {/* MEME CAROUSEL — desktop only, mid-page for visibility */}
@@ -150,19 +150,12 @@ export default function MenuPage() {
           </div>
         </div>
 
-        {items.length === 0 && (
-          <div className={styles.empty}>
-            <p>No items yet. <Link to="/jalsacorner/admin" className={styles.emptyLink}>Add from admin panel →</Link></p>
-          </div>
-        )}
-
         {/* FOOTER */}
         <div className={styles.footer}>
           <p className={styles.footerBrand}>JALSA<br />CORNER</p>
           <p className={styles.footerNote}>
             Freshly prepared daily · <strong>Dine-in & Takeaway</strong> · Prices incl. taxes
           </p>
-          <Link to="/jalsacorner/admin" className={styles.adminBtn}>Admin Panel</Link>
           <p className={styles.credit}>Designed & Developed by Python Department</p>
         </div>
       </main>
