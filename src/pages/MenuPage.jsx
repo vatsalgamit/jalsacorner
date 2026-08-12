@@ -5,6 +5,9 @@ import Ticker from '../components/Ticker';
 import MenuItem from '../components/MenuItem';
 import styles from './MenuPage.module.css';
 
+const CLASSIC_MEMES = ['/memes/1.jpg', '/memes/3.jpg', '/memes/2.jpg', '/memes/4.jpg'];
+const NEW_MEMES = ['/memes/5.png', '/memes/6.png', '/memes/7.png', '/memes/8.png', '/memes/9.png', '/memes/10.png', '/memes/11.png', '/memes/12.png', '/memes/13.png'];
+
 export default function MenuPage() {
   const { items } = useMenu();
   const snacks = items.filter(i => i.category === 'snacks');
@@ -23,14 +26,14 @@ export default function MenuPage() {
 
       {activeMeme && (
         <div className={styles.modalOverlay} onClick={() => setActiveMeme(null)}>
-          <img src={activeMeme} className={styles.modalImg} onClick={e => e.stopPropagation()} draggable={false} />
-          <button className={styles.modalClose} onClick={() => setActiveMeme(null)}>✕</button>
+          <img src={activeMeme} alt="Jalsa Corner meme" className={styles.modalImg} onClick={e => e.stopPropagation()} draggable={false} />
+          <button className={styles.modalClose} onClick={() => setActiveMeme(null)} aria-label="Close meme">✕</button>
         </div>
       )}
 
       {/* HERO */}
       <section className={styles.hero}>
-        <div className={styles.heroBg} />
+        <div className={styles.heroBg} role="img" aria-label="Jalsa Corner food spread" />
         <div className={styles.heroOverlay} />
 
         <div className={styles.heroTicker}>
@@ -51,8 +54,8 @@ export default function MenuPage() {
 
         <div className={styles.menuHeadWrapper}>
           <div className={styles.memesLeft}>
-            <img src="/memes/1.jpg" className={styles.memeFloatA} draggable={false} onClick={() => setActiveMeme('/memes/1.jpg')} />
-            <img src="/memes/3.jpg" className={styles.memeFloatB} draggable={false} onClick={() => setActiveMeme('/memes/3.jpg')} />
+            <img src="/memes/1.jpg" alt="Jalsa Corner meme" className={styles.memeFloatA} draggable={false} onClick={() => setActiveMeme('/memes/1.jpg')} />
+            <img src="/memes/3.jpg" alt="Jalsa Corner meme" className={styles.memeFloatB} draggable={false} onClick={() => setActiveMeme('/memes/3.jpg')} />
           </div>
 
           <div className={styles.menuHead}>
@@ -62,20 +65,21 @@ export default function MenuPage() {
           </div>
 
           <div className={styles.memesRight}>
-            <img src="/memes/2.jpg" className={styles.memeFloatB} draggable={false} onClick={() => setActiveMeme('/memes/2.jpg')} />
-            <img src="/memes/4.jpg" className={`${styles.memeFloatA} ${styles.memeSmall}`} draggable={false} onClick={() => setActiveMeme('/memes/4.jpg')} />
+            <img src="/memes/2.jpg" alt="Jalsa Corner meme" className={styles.memeFloatB} draggable={false} onClick={() => setActiveMeme('/memes/2.jpg')} />
+            <img src="/memes/4.jpg" alt="Jalsa Corner meme" className={`${styles.memeFloatA} ${styles.memeSmall}`} draggable={false} onClick={() => setActiveMeme('/memes/4.jpg')} />
           </div>
         </div>
 
-        {/* Mobile-only auto-scroll meme strip */}
+        {/* Mobile-only auto-scroll meme strip, single carousel right after menu head */}
         <div className={styles.memesMobile}>
           <div className={styles.memesMobileTrack}>
             {/* duplicated for seamless infinite loop */}
             {[...Array(2)].map((_, pass) =>
-              ['/memes/1.jpg', '/memes/3.jpg', '/memes/2.jpg', '/memes/4.jpg'].map((src, i) => (
+              [...CLASSIC_MEMES, ...NEW_MEMES].map((src, i) => (
                 <img
                   key={`${pass}-${i}`}
                   src={src}
+                  alt="Jalsa Corner meme"
                   className={styles.memesMobileCard}
                   draggable={false}
                   onClick={() => setActiveMeme(src)}
@@ -86,17 +90,56 @@ export default function MenuPage() {
           </div>
         </div>
 
-        {/* SNACKS */}
-        {snacks.length > 0 && (
-          <>
-            <div className={styles.catWrap}>
-              <span className={styles.catLabel}>Snacks</span>
+        {/* SNACKS & DRINKS — side by side on desktop, stacked on mobile */}
+        <div className={styles.categoriesRow}>
+          {snacks.length > 0 && (
+            <div className={styles.catColumn}>
+              <div className={styles.catWrap}>
+                <span className={styles.catLabel}>Snacks</span>
+              </div>
+              <div className={styles.itemsWrap}>
+                {snacks.map(item => <MenuItem key={item.id} item={item} />)}
+              </div>
             </div>
-            <div className={styles.itemsWrap}>
-              {snacks.map(item => <MenuItem key={item.id} item={item} />)}
+          )}
+
+          {drinks.length > 0 && (
+            <div className={styles.catColumn}>
+              <div className={styles.catWrap}>
+                <span className={`${styles.catLabel} ${styles.catDrinks}`}>Cold Drinks</span>
+              </div>
+              <div className={styles.itemsWrap}>
+                {drinks.map(item => <MenuItem key={item.id} item={item} />)}
+              </div>
             </div>
-          </>
-        )}
+          )}
+        </div>
+
+        {/* MEME CAROUSEL — desktop only, mid-page for visibility */}
+        <div className={`${styles.memesSection} ${styles.memesSectionMid}`}>
+          <div className={styles.memesSectionHead}>
+            <p className={styles.menuEyebrow}>Straight from the group chat</p>
+            <span className={styles.memesTag}>MEME DUMP 🔥</span>
+          </div>
+          <div className={styles.memesScroll}>
+            <div className={styles.memesCarouselTrack}>
+              {/* duplicated for seamless infinite loop */}
+              {[...Array(2)].map((_, pass) =>
+                NEW_MEMES.map((src, i) => (
+                  <img
+                    key={`${pass}-${i}`}
+                    src={src}
+                    alt="Jalsa Corner meme"
+                    className={styles.memeCard}
+                    draggable={false}
+                    onClick={() => setActiveMeme(src)}
+                    aria-hidden={pass === 1}
+                  />
+                ))
+              )}
+            </div>
+          </div>
+        </div>
 
         {/* MARQUEE */}
         <div className={styles.marquee} aria-hidden="true">
@@ -106,18 +149,6 @@ export default function MenuPage() {
             ))}
           </div>
         </div>
-
-        {/* DRINKS */}
-        {drinks.length > 0 && (
-          <>
-            <div className={styles.catWrap} style={{ marginTop: '2.5rem' }}>
-              <span className={`${styles.catLabel} ${styles.catDrinks}`}>Cold Drinks</span>
-            </div>
-            <div className={styles.itemsWrap}>
-              {drinks.map(item => <MenuItem key={item.id} item={item} />)}
-            </div>
-          </>
-        )}
 
         {items.length === 0 && (
           <div className={styles.empty}>

@@ -132,7 +132,7 @@
 }
 
 /* CATEGORY */
-.catWrap { max-width: 720px; margin: 3.5rem auto 0; padding: 0 1.5rem; }
+.catWrap { padding: 0; }
 .catLabel {
   display: inline-flex; align-items: center;
   font-family: 'Bebas Neue', sans-serif;
@@ -146,9 +146,28 @@
 
 /* ITEMS */
 .itemsWrap {
-  max-width: 720px; margin: 1.2rem auto 0;
-  padding: 0 1.5rem;
+  margin-top: 1.2rem;
   display: flex; flex-direction: column; gap: 1px;
+}
+
+/* SNACKS + DRINKS layout — stacked on mobile, side by side on desktop */
+.categoriesRow {
+  max-width: 1100px;
+  margin: 3.5rem auto 0;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.catColumn { max-width: 720px; width: 100%; margin: 0 auto; }
+
+@media (min-width: 769px) {
+  .categoriesRow {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 3.5rem;
+  }
+  .catColumn { max-width: none; margin: 0; flex: 1 1 0; }
 }
 
 /* MARQUEE */
@@ -249,12 +268,34 @@
 }
 .modalClose:hover { background: var(--pink); border-color: var(--pink); }
 
-/* MEMES BOTTOM STRIP */
+/* MEME CAROUSEL — mid-page, between Snacks and Marquee */
 .memesSection {
   background: #0D0D0D;
-  padding: 2.5rem 0;
+  border-top: 1px solid #1E1E1E;
+  border-bottom: 1px solid #1E1E1E;
+  padding: 2.2rem 0 2.5rem;
 }
-.memesSectionBottom { margin-top: 3.5rem; }
+.memesSectionMid { margin-top: 3.5rem; }
+
+.memesSectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 0 1.5rem;
+  margin-bottom: 1.4rem;
+  text-align: center;
+}
+.memesSectionHead .menuEyebrow { margin-bottom: 0; }
+.memesTag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; letter-spacing: 0.1em;
+  color: var(--ink);
+  background: var(--pink);
+  padding: 3px 14px 1px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
 
 .memesScroll {
   display: flex;
@@ -266,6 +307,19 @@
   scrollbar-width: none;
 }
 .memesScroll::-webkit-scrollbar { display: none; }
+
+.memesSectionMid .memesScroll {
+  overflow: hidden;
+  scroll-snap-type: none;
+}
+.memesCarouselTrack {
+  display: inline-flex;
+  gap: 1.2rem;
+  animation: ticker 34s linear infinite;
+}
+.memesSectionMid .memesScroll:hover .memesCarouselTrack {
+  animation-play-state: paused;
+}
 
 .memeCard {
   flex-shrink: 0;
@@ -324,6 +378,7 @@
 
 @media (max-width: 768px) {
   .memesLeft, .memesRight { display: none; }
+  .memesSectionMid { display: none; }
   .menuHeadWrapper { grid-template-columns: 1fr; padding: 2.5rem 1rem 0; }
   .menuHead { padding: 0; }
   .menu { padding-bottom: 4rem; }
@@ -339,7 +394,7 @@
   .memesMobileTrack {
     display: inline-flex;
     gap: 0.9rem;
-    animation: memeDrift 16s linear infinite;
+    animation: memeDrift 38s linear infinite;
   }
   .memesMobile:active .memesMobileTrack { animation-play-state: paused; }
 
@@ -389,8 +444,7 @@
   .memesMobileCard { height: 190px; }
 
   /* Sections */
-  .catWrap { margin-top: 2rem; padding: 0 1rem; }
-  .itemsWrap { padding: 0 1rem; }
+  .categoriesRow { margin-top: 2rem; padding: 0 1rem; gap: 2rem; }
   .footer { padding: 3rem 1rem env(safe-area-inset-bottom, 1.5rem); }
   .footerNote { font-size: 0.68rem; letter-spacing: 0.05em; line-height: 2; }
   .adminBtn { margin-top: 1.5rem; padding: 10px 20px; }
@@ -407,5 +461,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .heroBg, .heroCta, .marqueeInner { transition: none; animation: none; }
+  .heroBg, .heroCta, .marqueeInner, .memesCarouselTrack { transition: none; animation: none; }
 }
