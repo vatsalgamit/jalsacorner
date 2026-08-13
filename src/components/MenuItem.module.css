@@ -41,6 +41,16 @@
 
 .left { flex: 1; min-width: 0; }
 
+.nickname {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 0.25rem;
+}
+
 .name {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(1.8rem, 4.5vw, 2.8rem);
@@ -103,6 +113,7 @@
 
 @media (max-width: 480px) {
   .desc { display: none; }
+  .nickname { font-size: 0.52rem; }
   .inner { padding: 0.9rem 1rem; gap: 0.6rem; }
   .hindi { font-size: 0.72rem; }
   .name { font-size: clamp(1.5rem, 6vw, 2rem); }

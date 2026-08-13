@@ -1,10 +1,10 @@
 export const MENU_ITEMS = [
-  { id: 1, name: 'Khaman', hindi: 'ખમણ · खमण', desc: 'Soft steamed chickpea cake · mustard tempering · green chilli', price: 35, category: 'snacks', badge: 'Veg', image: 'khaman.jpg' },
-  { id: 2, name: 'Dhokla', hindi: 'ઢોકળા · ढोकला', desc: 'Fermented gram flour · tangy · sesame · fresh coriander', price: 30, category: 'snacks', badge: 'Veg', image: 'dhokla.jpeg' },
-  { id: 3, name: 'Sev Khamni', hindi: 'સેવ ખમણી · सेव ख़मणी', desc: 'Crumbled khaman · fine sev · pomegranate · lemon', price: 40, category: 'snacks', badge: 'Veg', image: 'sevkhamni.jpeg' },
-  { id: 4, name: 'Jamnagri Ghughra', hindi: 'ઘૂઘરા · घूघरा', desc: 'Crispy pastry · sweet spiced filling · classic Gujarati festive snack', price: 55, category: 'snacks', badge: 'Veg', image: 'ghughra.jpeg' },
-  { id: 5, name: 'Fanta', hindi: 'ફૅન્ટા · फैंटा', desc: 'Vibrant orange · sweet · bubbly', price: 15, category: 'drinks', badge: 'Cold', image: 'fanta.jpeg' },
-  { id: 6, name: 'Buttermilk', hindi: 'છાશ · छाछ', desc: 'Chilled spiced chaas · cumin · ginger · fresh coriander', price: 25, category: 'drinks', badge: 'Cold', image: 'butttermilk.jpeg' },
-  { id: 7, name: 'Sprite', hindi: 'સ્પ્રાઇટ · स्प्राइट', desc: 'Lemon lime fizz · crisp · refreshing on a hot day', price: 15, category: 'drinks', badge: 'Cold', image: 'sprite.jpeg' },
-  { id: 8, name: 'Coke', hindi: 'કોક · कोक', desc: 'Ice cold · the classic · pairs with everything spicy', price: 15, category: 'drinks', badge: 'Cold', image: 'coke.jpeg' },
+  { id: 1, name: 'Khaman', nickname: 'Khunkhaar Khaman', hindi: 'ખમણ · खमण', desc: 'Soft steamed chickpea cake, spiked with a fierce mustard-and-curry-leaf tadka · fluffy on the inside, tangy on every bite · finished with green chilli heat', price: 35, category: 'snacks', badge: 'Veg', image: 'khaman.jpg' },
+  { id: 2, name: 'Dhokla', nickname: 'Dhurandhar Dhokla', hindi: 'ઢોકળા · ढोकला', desc: 'Slow-fermented gram flour steamed to a pillow-soft finish · sharp tang, toasted sesame crunch · fresh coriander showered on top', price: 30, category: 'snacks', badge: 'Veg', image: 'dhokla.jpeg' },
+  { id: 3, name: 'Sev Khamni', nickname: 'Sanki Sev Khamni', hindi: 'સેવ ખમણી · सेव ख़मणी', desc: 'Hand-crumbled khaman tossed with fine crispy sev · pomegranate bursts, a squeeze of lemon · the crowd-favourite chaat-style mashup', price: 40, category: 'snacks', badge: 'Veg', image: 'sevkhamni.jpeg' },
+  { id: 4, name: 'Jamnagri Ghughra', nickname: 'Ghatak Ghughra', hindi: 'ઘૂઘરા · घूघरा', desc: 'Deep-fried pastry shell, crisp and flaky · packed with a sweet, spiced festive filling straight outta Jamnagar tradition', price: 55, category: 'snacks', badge: 'Veg', image: 'ghughra.jpeg' },
+  { id: 5, name: 'Fanta', nickname: 'Fattak Fanta', hindi: 'ફૅન્ટા · फैंटा', desc: 'Ice-cold vibrant orange fizz · sweet, bubbly, and gone in seconds', price: 15, category: 'drinks', badge: 'Cold', image: 'fanta.jpeg' },
+  { id: 6, name: 'Buttermilk', nickname: 'Bhayankar Chhaas', hindi: 'છાશ · छाछ', desc: 'Chilled spiced chaas whisked with roasted cumin, ginger, and fresh coriander · the ultimate cooler after spicy snacks', price: 25, category: 'drinks', badge: 'Cold', image: 'butttermilk.jpeg' },
+  { id: 7, name: 'Sprite', nickname: 'Sanki Sprite', hindi: 'સ્પ્રાઇટ · स्प्राइट', desc: 'Crisp lemon-lime fizz served ice cold · the clean, refreshing hit on a hot afternoon', price: 15, category: 'drinks', badge: 'Cold', image: 'sprite.jpeg' },
+  { id: 8, name: 'Coke', nickname: 'Killer Coke', hindi: 'કોક · कोक', desc: 'The classic, ice cold and unbothered · pairs with literally everything spicy on this menu', price: 15, category: 'drinks', badge: 'Cold', image: 'coke.jpeg' },
 ];

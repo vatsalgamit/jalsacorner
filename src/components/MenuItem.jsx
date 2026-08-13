@@ -14,6 +14,7 @@ export default function MenuItem({ item }) {
       )}
       <div className={styles.inner}>
         <div className={styles.left}>
+          {item.nickname && <span className={styles.nickname}>{item.nickname}</span>}
           <span className={styles.name}>{item.name}</span>
           <span className={styles.hindi}>{item.hindi}</span>
           <p className={styles.desc}>{item.desc}</p>
