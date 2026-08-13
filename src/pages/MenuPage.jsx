@@ -6,7 +6,7 @@ import LivePlayer from '../components/LivePlayer';
 import styles from './MenuPage.module.css';
 
 const CLASSIC_MEMES = ['/memes/1.jpg', '/memes/3.jpg', '/memes/2.jpg', '/memes/4.jpg'];
-const NEW_MEMES = ['/memes/5.png', '/memes/6.png', '/memes/7.png', '/memes/8.png', '/memes/9.png', '/memes/10.png', '/memes/11.png', '/memes/12.png', '/memes/13.png'];
+const NEW_MEMES = ['/memes/5.png', '/memes/6.png', '/memes/7.png', '/memes/8.png', '/memes/9.png', '/memes/10.png', '/memes/11.png', '/memes/12.png', '/memes/13.png', '/memes/14.png'];
 
 const SNACKS = MENU_ITEMS.filter(i => i.category === 'snacks');
 const DRINKS = MENU_ITEMS.filter(i => i.category === 'drinks');
