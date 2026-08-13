@@ -1,0 +1,149 @@
+.widget {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: min(360px, calc(100vw - 2rem));
+  transition: all 0.25s ease;
+}
+
+.widget.collapsed {
+  left: auto;
+  right: 1rem;
+  bottom: 1rem;
+  transform: none;
+  width: auto;
+}
+.widget.collapsed .card {
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.widget.collapsed .artWrap {
+  width: 56px; height: 56px;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(255, 255, 255, 0.18);
+}
+.widget.collapsed .artWrap:hover { box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(255, 255, 255, 0.35); }
+
+.liveBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.pulseDot { position: relative; display: inline-flex; height: 8px; width: 8px; }
+.pulseRing {
+  position: absolute; inset: 0; border-radius: 999px;
+  background: #4ade80; opacity: 0.75;
+  animation: ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.pulseCore {
+  position: relative; display: inline-flex; height: 8px; width: 8px;
+  border-radius: 999px; background: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.9);
+}
+@keyframes ping {
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
+.liveCount { font-weight: 700; }
+.liveLabel { color: rgba(255, 255, 255, 0.7); }
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 1.1rem;
+  background: rgba(13, 13, 13, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+}
+
+.minimizeBtn {
+  position: absolute;
+  top: -10px; right: -6px;
+  width: 22px; height: 22px;
+  display: grid; place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(13, 13, 13, 0.9);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.7rem; line-height: 1;
+  cursor: pointer;
+}
+.minimizeBtn:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
+
+.artWrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 52px; height: 52px;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+.miniPulse {
+  position: absolute;
+  top: 2px; right: 2px;
+  display: inline-flex;
+  height: 9px; width: 9px;
+  z-index: 1;
+}
+.ytFrame { width: 100%; height: 100%; pointer-events: none; }
+.ytFrame iframe { width: 100%; height: 100%; pointer-events: none; }
+
+.spinning .ytFrame { animation: spin 8s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.info { flex: 1; min-width: 0; }
+.title {
+  font-size: 0.8rem; font-weight: 600; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.artist {
+  font-size: 0.68rem; color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.controls { display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0; }
+.ctrlBtn, .playBtn {
+  display: grid; place-items: center;
+  border: none; cursor: pointer;
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.ctrlBtn { width: 28px; height: 28px; border-radius: 999px; font-size: 0.8rem; }
+.ctrlBtn:hover { background: rgba(255, 255, 255, 0.12); }
+.playBtn {
+  width: 34px; height: 34px; border-radius: 999px;
+  background: #fff; color: #0d0d0d; font-size: 0.85rem;
+}
+.playBtn:hover { transform: scale(1.06); }
+.ctrlBtn:disabled, .playBtn:disabled { opacity: 0.4; cursor: default; }
+
+@media (max-width: 480px) {
+  .widget { bottom: 0.75rem; }
+  .title { font-size: 0.75rem; }
+}

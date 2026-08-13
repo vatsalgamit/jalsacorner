@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  padding-bottom: 3rem;
+  padding-bottom: calc(3rem + 90px);
   overflow: hidden;
 }
 
@@ -365,20 +365,20 @@
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3rem, 8vw, 5rem);
   letter-spacing: 0.1em;
-  color: #1E1E1E; line-height: 1; margin-bottom: 1.5rem;
+  color: var(--yellow); line-height: 1; margin-bottom: 1.5rem;
 }
 .footerNote {
-  font-size: 0.68rem; letter-spacing: 0.1em;
-  color: #333; line-height: 2.4; text-transform: uppercase;
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  color: #B8B8B8; line-height: 2.4; text-transform: uppercase;
 }
 .footerNote strong { color: var(--pink); }
 
 .credit {
   margin-top: 1.8rem;
-  font-size: 0.55rem;
+  font-size: 0.58rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #2A2A2A;
+  color: #777;
 }
 
 @media (max-width: 768px) {
@@ -427,7 +427,7 @@
 
 @media (max-width: 480px) {
   /* Hero — purely vw so nothing overflows */
-  .hero { padding-bottom: 2rem; }
+  .hero { padding-bottom: calc(2rem + 96px); }
   .heroBg { filter: saturate(1.2) brightness(0.32); }
   .heroInner { padding: 0 1rem; }
   .heroTag { font-size: 0.52rem; letter-spacing: 0.08em; padding: 4px 8px; white-space: nowrap; }

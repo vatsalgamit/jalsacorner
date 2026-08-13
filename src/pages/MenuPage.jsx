@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { MENU_ITEMS } from '../menuItems';
 import Ticker from '../components/Ticker';
 import MenuItem from '../components/MenuItem';
+import LivePlayer from '../components/LivePlayer';
 import styles from './MenuPage.module.css';
 
 const CLASSIC_MEMES = ['/memes/1.jpg', '/memes/3.jpg', '/memes/2.jpg', '/memes/4.jpg'];
@@ -22,6 +23,8 @@ export default function MenuPage() {
 
   return (
     <div className={styles.page}>
+
+      <LivePlayer />
 
       {activeMeme && (
         <div className={styles.modalOverlay} onClick={() => setActiveMeme(null)}>
