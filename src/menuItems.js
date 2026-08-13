@@ -5,6 +5,6 @@ export const MENU_ITEMS = [
   { id: 4, name: 'Jamnagri Ghughra', nickname: 'Ghatak Ghughra', hindi: 'ઘૂઘરા · घूघरा', desc: 'Deep-fried pastry shell, crisp and flaky · packed with a sweet, spiced festive filling straight outta Jamnagar tradition', price: 55, category: 'snacks', badge: 'Veg', image: 'ghughra.jpeg' },
   { id: 5, name: 'Fanta', nickname: 'Fattak Fanta', hindi: 'ફૅન્ટા · फैंटा', desc: 'Ice-cold vibrant orange fizz · sweet, bubbly, and gone in seconds', price: 15, category: 'drinks', badge: 'Cold', image: 'fanta.jpeg' },
   { id: 6, name: 'Buttermilk', nickname: 'Bhayankar Chhaas', hindi: 'છાશ · छाछ', desc: 'Chilled spiced chaas whisked with roasted cumin, ginger, and fresh coriander · the ultimate cooler after spicy snacks', price: 25, category: 'drinks', badge: 'Cold', image: 'butttermilk.jpeg' },
-  { id: 7, name: 'Sprite', nickname: 'Sanki Sprite', hindi: 'સ્પ્રાઇટ · स्प्राइट', desc: 'Crisp lemon-lime fizz served ice cold · the clean, refreshing hit on a hot afternoon', price: 15, category: 'drinks', badge: 'Cold', image: 'sprite.jpeg' },
+  { id: 7, name: 'Sprite', nickname: 'System-Hilaao Sprite', hindi: 'સ્પ્રાઇટ · स्प्राइट', desc: 'Crisp lemon-lime fizz served ice cold · the clean, refreshing hit on a hot afternoon', price: 15, category: 'drinks', badge: 'Cold', image: 'sprite.jpeg' },
   { id: 8, name: 'Coke', nickname: 'Killer Coke', hindi: 'કોક · कोक', desc: 'The classic, ice cold and unbothered · pairs with literally everything spicy on this menu', price: 15, category: 'drinks', badge: 'Cold', image: 'coke.jpeg' },
 ];
